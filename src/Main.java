@@ -6,30 +6,28 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        //Painful
-////        GoodExample goodExample = new GoodExample(false, true, true, new Object(), null, new Object());
-////        //Super cool
-////        GoodExample goodExample1 = new GoodExampleBuilder()
-////                .setFlag2(true)
-////                .setDep1(new Object())
-////                .setDep3(new Object())
-////                .build();
-////
-////        //NPE
-////        BadExample badExample = new BadExampleBuilder()
-////                .setFirstName("CE")
-////                .setLastName("Omer")
-////                .build();
+        //Painful
+        GoodExample goodExample = new GoodExample(false, true, false, new Object(), null, new Object());
+        //Super cool
+        GoodExample goodExample1 = new GoodExampleBuilder()
+                .setFlag2(true)
+                .setDep1(new Object())
+                .setDep3(new Object())
+                .build();
 
-        Vehicle car = new Vehicle.VehicleBuilder()
-                .setYear("2019")
-                .setMake("Mercedes")
-                .setModel("SLK")
+        //NPE
+        BadExample badExample = new BadExampleBuilder()
+                .setFirstName("CE")
+                .setLastName("Omer")
+                .build();
+
+        Car car = new Vehicle.VehicleBuilder()
+                .setMake("MERCEDES")
                 .setFuelType(Car.FuelType.GAS)
                 .setIsAutomatic(true)
                 .buildCar();
 
-        Vehicle suv = new Vehicle.VehicleBuilder()
+        SUV suv = new Vehicle.VehicleBuilder()
                 .setYear("2011")
                 .setMake("Toyota")
                 .setModel("RAV4")
