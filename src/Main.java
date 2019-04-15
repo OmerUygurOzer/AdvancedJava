@@ -1,6 +1,7 @@
 import builders.Car;
 import builders.SUV;
 import builders.Vehicle;
+import suppliers.CarSupplier;
 
 public class Main {
 
@@ -37,7 +38,11 @@ public class Main {
 //                .setSize(SUV.Size.L)
 //                .buildSUV();
 
+        CarSupplier carSupplier = new CarSupplier();
 
+        Car car = carSupplier.get();
+        Car car1 = carSupplier.get();
+        Car car2 = carSupplier.get();
 
     }
 
