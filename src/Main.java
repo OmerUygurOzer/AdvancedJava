@@ -1,13 +1,21 @@
 import builders.Car;
 import builders.SUV;
 import builders.Vehicle;
+import nullsafety.NullSafeApi;
 import suppliers.CarSupplier;
+
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
 
 public class Main {
 
-    public static void main(String[] args) {
+    @Nonnull private static String value;
 
+    public static void main(String[] args) throws Exception {
 
+        value = null;
         // _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
         // 0 = 0000000000000000000
         // 4 = 0000000000000000010
@@ -16,9 +24,19 @@ public class Main {
         // 2|4|8=0000000000000000111
         //       0000000000000000001
 
-        int flag = 2 | 4 | 8 ;
+        NullSafeApi nullSafeApi = new NullSafeApi(valueOptional -> {
+            valueOptional.ifPresent(s -> {
+                System.out.println(s);
+                    }
+            );
+        });
 
-        boolean isTwo = (flag & 2)==2;
+        nullSafeApi.generateValue();
+        nullSafeApi.generateValue();
+
+//        int flag = 2 | 4 | 8 ;
+//
+//        boolean isTwo = (flag & 2)==2;
 
 //        //Painful
 //        GoodExample goodExample = new GoodExample(false, true, false, new Object(), null, new Object());
@@ -54,7 +72,6 @@ public class Main {
 //        Car car = carSupplier.get();
 //        Car car1 = carSupplier.get();
 //        Car car2 = carSupplier.get();
-
     }
 
     private static class GoodExample {
