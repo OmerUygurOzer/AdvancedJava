@@ -1,6 +1,8 @@
 import builders.Car;
 import builders.SUV;
 import builders.Vehicle;
+import futures.FuturesApi;
+import futures.SettableFuture;
 import nullsafety.NullSafeApi;
 import suppliers.CarSupplier;
 
@@ -15,19 +17,23 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Future<String> stringFuture = Executors.newFixedThreadPool(1)
+        Future<String> stringFuture = new FuturesApi()
                 .submit(() -> {
                     Thread.sleep(5000);
                     return UUID.randomUUID().toString();
-                });
+                }, new SettableFuture.Listener<String>() {
+                    @Override
+                    public void settableSet(String result, Exception e) {
+                        System.out.println(result);
+                    }
+                },Executors.newSingleThreadExecutor());
 
-        while (!stringFuture.isDone()){
-            System.out.println("IS WAITING...");
-            Thread.sleep(1000);
-        }
-
-        System.out.println(stringFuture.get());
-
+//        while (!stringFuture.isDone()){
+//            System.out.println("IS WAITING...");
+//            Thread.sleep(1000);
+//        }
+//
+//        System.out.println(stringFuture.get());
 
         // _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
         // 0 = 0000000000000000000
