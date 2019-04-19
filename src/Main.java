@@ -5,17 +5,30 @@ import nullsafety.NullSafeApi;
 import suppliers.CarSupplier;
 
 import java.util.Optional;
+import java.util.UUID;
+import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 
 public class Main {
 
-    @Nonnull private static String value;
-
     public static void main(String[] args) throws Exception {
 
-        value = null;
+        Future<String> stringFuture = Executors.newFixedThreadPool(1)
+                .submit(() -> {
+                    Thread.sleep(5000);
+                    return UUID.randomUUID().toString();
+                });
+
+        while (!stringFuture.isDone()){
+            System.out.println("IS WAITING...");
+            Thread.sleep(1000);
+        }
+
+        System.out.println(stringFuture.get());
+
+
         // _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
         // 0 = 0000000000000000000
         // 4 = 0000000000000000010
@@ -23,16 +36,6 @@ public class Main {
         // 2   = 0000000000000000001
         // 2|4|8=0000000000000000111
         //       0000000000000000001
-
-        NullSafeApi nullSafeApi = new NullSafeApi(valueOptional -> {
-            valueOptional.ifPresent(s -> {
-                System.out.println(s);
-                    }
-            );
-        });
-
-        nullSafeApi.generateValue();
-        nullSafeApi.generateValue();
 
 //        int flag = 2 | 4 | 8 ;
 //
