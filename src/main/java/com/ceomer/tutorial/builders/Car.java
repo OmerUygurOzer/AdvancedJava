@@ -1,5 +1,8 @@
 package com.ceomer.tutorial.builders;
 
+import com.ceomer.tutorial.Builder;
+
+@Builder
 public class Car extends Vehicle {
 
     public enum FuelType{
@@ -7,13 +10,17 @@ public class Car extends Vehicle {
         GAS,
         DIESEL
     }
-    private boolean isAutomatic;
-    private FuelType fuelType;
+    public boolean isAutomatic;
+    public FuelType fuelType;
 
     Car(String make, String model, String year,boolean isAutomatic,FuelType fuelType) {
         super(make, model, year);
         this.isAutomatic = isAutomatic;
         this.fuelType = fuelType==null?FuelType.GAS:fuelType;
+    }
+
+    public Car(){
+        super(null,null,null);
     }
 
 

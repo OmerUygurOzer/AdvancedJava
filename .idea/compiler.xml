@@ -12,11 +12,14 @@
       <entry name="!?*.clj" />
     </wildcardResourcePatterns>
     <annotationProcessing>
-      <profile name="CEOmerCheckr">
-        <processor name="org.checkerframework.checker.nullness.NullnessChecker" />
-        <processorPath useClasspath="false">
-          <entry name="$PROJECT_DIR$/../checker-framework-2.8.0/checker/dist/checker.jar" />
+      <profile default="true" name="Default" enabled="true">
+        <option name="proc" value="" />
+        <processorPath>
+          <entry name="$PROJECT_DIR$/src/annotations/MyProcessor.java" />
         </processorPath>
+      </profile>
+      <profile name="Builders" enabled="true">
+        <module name="CEOmer" />
       </profile>
     </annotationProcessing>
   </component>

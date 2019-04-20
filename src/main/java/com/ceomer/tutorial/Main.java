@@ -1,5 +1,9 @@
 package com.ceomer.tutorial;
 
+import com.ceomer.tutorial.annotations.AnnotationExample;
+import com.ceomer.tutorial.annotations.AnnotationExampleBuilder;
+import com.ceomer.tutorial.builders.Car;
+import com.ceomer.tutorial.builders.CarBuilder;
 import com.ceomer.tutorial.futures.FuturesApi;
 import com.ceomer.tutorial.futures.SettableFuture;
 
@@ -14,16 +18,31 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        Future<String> stringFuture = new FuturesApi()
-                .submit(() -> {
-                    Thread.sleep(5000);
-                    return UUID.randomUUID().toString();
-                }, new SettableFuture.Listener<String>() {
-                    @Override
-                    public void settableSet(String result, Exception e) {
-                        System.out.println(result);
-                    }
-                },Executors.newSingleThreadExecutor());
+        AnnotationExample annotationExample = AnnotationExampleBuilder.create()
+                .setobject1(new Object())
+                .setobject2(null)
+                .setobject3(null)
+                .build();
+
+        Car car = CarBuilder.create()
+                .setfuelType(Car.FuelType.GAS)
+                .setisAutomatic(true)
+                .build();
+
+//        System.out.println(annotationExample.object1);
+//        System.out.println(annotationExample.object2);
+//        System.out.println(annotationExample.object3);
+
+//        Future<String> stringFuture = new FuturesApi()
+//                .submit(() -> {
+//                    Thread.sleep(5000);
+//                    return UUID.randomUUID().toString();
+//                }, new SettableFuture.Listener<String>() {
+//                    @Override
+//                    public void settableSet(String result, Exception e) {
+//                        System.out.println(result);
+//                    }
+//                },Executors.newSingleThreadExecutor());
 
 //        while (!stringFuture.isDone()){
 //            System.out.println("IS WAITING...");

@@ -1,7 +1,7 @@
 package com.ceomer.tutorial.suppliers;
 
-import builders.Car;
-import builders.Vehicle;
+import com.ceomer.tutorial.builders.Car;
+import com.ceomer.tutorial.builders.Vehicle;
 
 public class CarSupplier implements Supplier<Car> {
     @Override
